@@ -45,21 +45,25 @@ std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
   return image;
 }
 
-void setSeed(int seed)
+int setSeed(int seed)
 {
   if (seed < 0)
     seed = time(NULL);
   srand(seed);
   std::cout << seed << std::endl;
+  return seed;
 }
 
 int main(int argc, char const *argv[])
 {
-  setSeed(-1);
-  unsigned int width{128};
-  unsigned int height{128};
+  int seed = setSeed(-1);
+  std::string path = "images/";
+  const char *fileName = path.append(std::to_string(seed)).append(".png").c_str();
 
+  unsigned int width{256};
+  unsigned int height{256};
   std::vector<unsigned char> image = getImage(width, height);
-  encodeOneStep("test.png", image, width, height);
+
+  encodeOneStep(fileName, image, width, height);
   return 0;
 }
