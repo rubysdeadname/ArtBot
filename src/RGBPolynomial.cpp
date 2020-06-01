@@ -1,6 +1,6 @@
 #include <math.h>
 #include <vector>
-#include "RGBPolynomial.h"
+#include "RGBPolynomial.hpp"
 
 float RGBPolynomial::norm(float z)
 {

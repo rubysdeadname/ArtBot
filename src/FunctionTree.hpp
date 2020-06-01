@@ -1,5 +1,5 @@
 #pragma once
-#include "BinaryFunctionMap.h"
+#include "BinaryFunctionMap.hpp"
 #include <vector>
 
 class FunctionTree

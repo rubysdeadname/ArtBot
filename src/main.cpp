@@ -1,7 +1,8 @@
-#include "lodepng.h"
+#include "lodepng.hpp"
 #include <iostream>
-#include "FunctionTree.h"
-#include "RGBPolynomial.h"
+#include <string>
+#include "FunctionTree.hpp"
+#include "RGBPolynomial.hpp"
 
 void encodeOneStep(const char *filename, std::vector<unsigned char> &image, unsigned width, unsigned height)
 {
@@ -59,10 +60,6 @@ int main(int argc, char const *argv[])
   int seed = setSeed(-1);
   std::string path = "images/";
   const char *fileName = path.append(std::to_string(seed)).append(".png").c_str();
-
-  unsigned int width{256};
-  unsigned int height{256};
-  std::vector<unsigned char> image = getImage(width, height);
 
   encodeOneStep(fileName, image, width, height);
   return 0;

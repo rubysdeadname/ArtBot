@@ -1,5 +1,5 @@
-#include "BinaryFunctionMap.h"
-#include "FunctionTree.h"
+#include "BinaryFunctionMap.hpp"
+#include "FunctionTree.hpp"
 #include <vector>
 
 float FunctionTree::applyTree(float initialX, float initialY)

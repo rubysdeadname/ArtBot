@@ -1,5 +1,5 @@
 #include <math.h>
-#include "BinaryFunctionMap.h"
+#include "BinaryFunctionMap.hpp"
 
 float BinaryFunctionMap::applyBasic(const float x, const float y, int n)
 {
