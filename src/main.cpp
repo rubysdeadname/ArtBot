@@ -3,6 +3,7 @@
 #include <string>
 #include "FunctionTree.hpp"
 #include "RGBPolynomial.hpp"
+#include "ArgumentHandler.hpp"
 
 void encodeOneStep(const char *filename, std::vector<unsigned char> &image, unsigned width, unsigned height)
 {
@@ -44,15 +45,6 @@ std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
   BinaryFunctionMap map;
   FunctionTree tree(pairsArray, map);
   std::vector<std::vector<int>> coeffArray = {getRandomIntArray(4, 10), getRandomIntArray(5, 10), getRandomIntArray(4, 10)};
-  for (auto a : coeffArray)
-  {
-    for (auto b : a)
-    {
-      std::cout << b << " ";
-    }
-    std::cout << std::endl;
-  }
-
   RGBPolynomial poly(coeffArray);
 
   std::vector<unsigned char> image = {};
@@ -82,28 +74,18 @@ int setSeed(int seed)
 
 int main(int argc, char const *argv[])
 {
-  int seed = -1;
-  if (argc > 1)
-  {
-    std::string seedString(argv[1]);
-    seed = std::stoi(seedString);
-  }
-  seed = setSeed(seed);
+  ArgumentHandler handler(argc, argv);
+  int seed = setSeed(handler.getSeed());
+  int dim = handler.getWidth();
 
-  unsigned int dim = 256;
-  if (argc > 2)
-  {
-    std::string widthString(argv[2]);
-    dim = std::stoul(widthString);
-  }
-
-  unsigned int width = dim;
-  unsigned int height = dim;
-  std::vector<unsigned char> image = getImage(width, height);
+  std::vector<unsigned char> image = getImage(dim, dim);
 
   std::string path = "images/";
-  const char *fileName = path.append(std::to_string(seed)).append(".png").c_str();
+  std::string name = handler.getName();
+  if (name == "")
+    name = std::to_string(seed);
+  const char *fileName = path.append(name).append(".png").c_str();
 
-  encodeOneStep(fileName, image, width, height);
+  encodeOneStep(fileName, image, dim, dim);
   return 0;
 }
