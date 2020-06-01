@@ -24,4 +24,4 @@ These details can be changed using command arguments.
 | -s  | Supply the seed for the random number generation   |
 | -w  | Supply the width and height in pixels of the image |
 
-![Demo Image](https://github.com/gabrielbarker/ArtBot/raw/master/img/readme1.png "Demo Image")
+![Demo Image](https://github.com/gabrielbarker/ArtBot/raw/master/img/readme.png "Demo Image")
