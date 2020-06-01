@@ -11,6 +11,22 @@ void encodeOneStep(const char *filename, std::vector<unsigned char> &image, unsi
     std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
 }
 
+int getRandomInt(int upperLimit)
+{
+  return (int)(upperLimit * (float)rand() / (float)RAND_MAX);
+}
+
+std::vector<int> getRandomIntArray(int length, int upperLimit)
+{
+  std::vector<int> randArr = {};
+  for (int i = 0; i < length; i++)
+  {
+    randArr.push_back(getRandomInt(upperLimit));
+  }
+
+  return randArr;
+}
+
 std::vector<std::vector<int>> getRandomPairsArray(unsigned int length)
 {
   std::vector<std::vector<int>> pairs = {};
@@ -27,7 +43,16 @@ std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
   std::vector<std::vector<int>> pairsArray = getRandomPairsArray(4);
   BinaryFunctionMap map;
   FunctionTree tree(pairsArray, map);
-  std::vector<std::vector<int>> coeffArray = {{2, 2, 13, 4}, {7, 2, -1, 1, 8}, {4, 6, 2, 1, 1}};
+  std::vector<std::vector<int>> coeffArray = {getRandomIntArray(4, 10), getRandomIntArray(5, 10), getRandomIntArray(4, 10)};
+  for (auto a : coeffArray)
+  {
+    for (auto b : a)
+    {
+      std::cout << b << " ";
+    }
+    std::cout << std::endl;
+  }
+
   RGBPolynomial poly(coeffArray);
 
   std::vector<unsigned char> image = {};
@@ -57,7 +82,25 @@ int setSeed(int seed)
 
 int main(int argc, char const *argv[])
 {
-  int seed = setSeed(-1);
+  int seed = -1;
+  if (argc > 1)
+  {
+    std::string seedString(argv[1]);
+    seed = std::stoi(seedString);
+  }
+  seed = setSeed(seed);
+
+  unsigned int dim = 256;
+  if (argc > 2)
+  {
+    std::string widthString(argv[2]);
+    dim = std::stoul(widthString);
+  }
+
+  unsigned int width = dim;
+  unsigned int height = dim;
+  std::vector<unsigned char> image = getImage(width, height);
+
   std::string path = "images/";
   const char *fileName = path.append(std::to_string(seed)).append(".png").c_str();
 
