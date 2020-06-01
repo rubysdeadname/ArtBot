@@ -27,7 +27,7 @@ These details can be changed using command arguments.
 Here's an example command that would create a png called `test.png` with the random seed `1591005661` with resolution `4096`:
 
 ```
-./artbot.o -n test -s 1591005661 -w 512
+./artbot.o -n test -s 1591005661 -w 4096
 ```
 
 ![Demo Image](https://github.com/gabrielbarker/ArtBot/raw/master/img/readme.png "Demo Image")
