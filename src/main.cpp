@@ -24,7 +24,6 @@ std::vector<int> getRandomIntArray(int length, int upperLimit)
   {
     randArr.push_back(getRandomInt(upperLimit));
   }
-
   return randArr;
 }
 
@@ -33,7 +32,7 @@ std::vector<std::vector<int>> getRandomPairsArray(unsigned int length)
   std::vector<std::vector<int>> pairs = {};
   for (int i = 0; i < length; i++)
   {
-    std::vector<int> pair = {rand() % 12, rand() % 12};
+    std::vector<int> pair = {rand() % 5, rand() % 5};
     pairs.push_back(pair);
   }
   return pairs;
@@ -41,10 +40,15 @@ std::vector<std::vector<int>> getRandomPairsArray(unsigned int length)
 
 std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
 {
-  std::vector<std::vector<int>> pairsArray = getRandomPairsArray(4);
+  std::vector<std::vector<int>> pairsArray = getRandomPairsArray(3);
   BinaryFunctionMap map;
   FunctionTree tree(pairsArray, map);
-  std::vector<std::vector<int>> coeffArray = {getRandomIntArray(4, 10), getRandomIntArray(5, 10), getRandomIntArray(4, 10)};
+
+  std::vector<std::vector<int>> coeffArray = {
+      getRandomIntArray((rand() % 4) + 4, 10),
+      getRandomIntArray((rand() % 4) + 4, 10),
+      getRandomIntArray((rand() % 4) + 4, 10),
+  };
   RGBPolynomial poly(coeffArray);
 
   std::vector<unsigned char> image = {};
