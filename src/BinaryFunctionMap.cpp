@@ -15,10 +15,10 @@ float BinaryFunctionMap::applyComplex(const float z, int n)
   if (n <= 3)
     return z;
   else if (n <= 6)
-    return sin(z);
+    return sin(6.282f * z);
   else if (n <= 9)
-    return cos(z);
-  return tan(z);
+    return cos(6.282f * z);
+  return tan(6.282f * z);
 }
 
 float BinaryFunctionMap::applyFunction(const float x, const float y, int n)
