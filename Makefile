@@ -9,6 +9,7 @@ CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++17 -I$(INCDIR)
 CXX = g++
 
 artbot: $(SRCS)
+	$(shell mkdir -p $(BUILDDIR))
 	$(CXX) $^ $(CXXFLAGS) -o $(BUILDDIR)/$@
 
 .PHONY: clean
