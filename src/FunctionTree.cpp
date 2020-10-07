@@ -4,7 +4,7 @@
 
 float FunctionTree::applyTree(float initialX, float initialY)
 {
-  float x = initialX, y = initialY, z = 0;
+  float x = initialX, y = initialY;
   for (std::vector<int> pair : pairsArray)
   {
     x = functionMap.applyFunction(x, y, pair[0]), y = functionMap.applyFunction(x, y, pair[1]);
