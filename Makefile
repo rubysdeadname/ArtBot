@@ -26,3 +26,6 @@ test: $(TESTS)
 .PHONY: clean
 clean:
 	$(RM) $(BUILDDIR)/artbot
+
+get-deps:
+	brew install unittest-cpp
