@@ -6,9 +6,9 @@ class FunctionTree
 {
 private:
   BinaryFunctionMap functionMap;
-  std::vector<std::vector<int>> pairsArray;
+  std::vector<std::pair<int, int>> pairsArray;
 
 public:
   float applyTree(float, float);
-  FunctionTree(std::vector<std::vector<int>> pairsArray, BinaryFunctionMap map);
+  FunctionTree(std::vector<std::pair<int, int>> pairsArray, BinaryFunctionMap map);
 };

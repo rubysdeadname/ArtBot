@@ -4,15 +4,15 @@
 
 float FunctionTree::applyTree(float initialX, float initialY)
 {
-  float x = initialX, y = initialY, z = 0;
-  for (std::vector<int> pair : pairsArray)
+  float x = initialX, y = initialY;
+  for (auto pair : pairsArray)
   {
-    x = functionMap.applyFunction(x, y, pair[0]), y = functionMap.applyFunction(x, y, pair[1]);
+    x = functionMap.applyFunction(x, y, pair.first), y = functionMap.applyFunction(x, y, pair.second);
   }
   return (x * y);
 }
 
-FunctionTree::FunctionTree(std::vector<std::vector<int>> pairs, BinaryFunctionMap map)
+FunctionTree::FunctionTree(std::vector<std::pair<int, int>> pairs, BinaryFunctionMap map)
 {
   functionMap = map;
   pairsArray = pairs;
