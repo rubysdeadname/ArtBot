@@ -3,7 +3,7 @@
 
 int ArgumentHandler::getIndexOf(std::string s)
 {
-  for (int i = 0; i < numberOfArguments; i++)
+  for (int i = 0; i < numberOfArguments; ++i)
   {
     if (arguments[i] == s)
       return i;
@@ -46,7 +46,7 @@ unsigned int ArgumentHandler::getWidth()
 ArgumentHandler::ArgumentHandler(int argc, char const *argv[])
 {
   numberOfArguments = argc;
-  for (int i = 0; i < numberOfArguments; i++)
+  for (int i = 0; i < numberOfArguments; ++i)
   {
     std::string str(argv[i]);
     arguments.push_back(str);

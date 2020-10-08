@@ -53,9 +53,9 @@ std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
 
   std::vector<unsigned char> image = {};
 
-  for (int i = 0; i < height; i++)
+  for (unsigned int i = 0; i < height; ++i)
   {
-    for (int j = 0; j < width; j++)
+    for (unsigned int j = 0; j < width; ++j)
     {
       std::vector<float> vec = poly.applyPoly(tree.applyTree(((float)i / width), (float)j / height));
       image.push_back(vec[0] * 255);
