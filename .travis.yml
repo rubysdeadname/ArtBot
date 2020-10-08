@@ -7,12 +7,12 @@ matrix:
       osx_image: xcode10
 
 before_install:
-  - brew upgrade gcc -q
+  - HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade gcc -q
   - CC=gcc-7
   - CXX=g++-7
 
 install:
-  - brew install unittest-cpp -q
+  - HOMEBREW_NO_AUTO_UPDATE=1 brew install unittest-cpp -q
 
 script:
   - make test
