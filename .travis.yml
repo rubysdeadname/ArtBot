@@ -5,14 +5,14 @@ matrix:
   include:
     - os: osx
       osx_image: xcode10
-      env:
-        - MATRIX_EVAL="brew install gcc && CC=gcc-7 && CXX=g++-7"
 
 before_install:
-  - eval "${MATRIX_EVAL}"
+  - brew upgrade gcc -q
+  - CC=gcc-7
+  - CXX=g++-7
 
 install:
-  - brew install unittest-cpp
+  - brew install unittest-cpp -q
 
 script:
   - make test
