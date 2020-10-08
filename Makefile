@@ -26,6 +26,3 @@ test: $(TESTS)
 .PHONY: clean
 clean:
 	$(RM) $(BUILDDIR)/artbot
-
-get-deps:
-	HOMEBREW_NO_AUTO_UPDATE=1 brew install unittest-cpp
