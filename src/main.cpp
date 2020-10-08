@@ -4,7 +4,6 @@
 #include "FunctionTree.hpp"
 #include "RGBPolynomial.hpp"
 #include "ArgumentHandler.hpp"
-#include "UnitTest++/UnitTest++.h"
 
 void encodeOneStep(const char *filename, std::vector<unsigned char> &image, unsigned width, unsigned height)
 {
@@ -92,5 +91,5 @@ int main(int argc, char const *argv[])
   const char *fileName = path.append(name).append(".png").c_str();
 
   encodeOneStep(fileName, image, dim, dim);
-  return UnitTest::RunAllTests();
+  return 0;
 }
