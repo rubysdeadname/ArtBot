@@ -4,15 +4,16 @@ compiler: g++
 matrix:
   include:
     - os: osx
-      osx_image: xcode10
+      osx_image: xcode11.4
 
 before_install:
-  - HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade gcc -q
+  - echo g++ --version
+  - HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade gcc
   - CC=gcc-7
   - CXX=g++-7
 
 install:
-  - HOMEBREW_NO_AUTO_UPDATE=1 brew install unittest-cpp -q
+  - HOMEBREW_NO_AUTO_UPDATE=1 brew install unittest-cpp
 
 script:
   - make test
