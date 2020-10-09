@@ -19,20 +19,24 @@ int getRandomInt(int upperLimit)
 
 std::vector<int> getRandomIntArray(int length, int upperLimit)
 {
-  std::vector<int> randArr = {};
-  for (int i = 0; i < length; i++)
+  std::vector<int> randArr;
+  randArr.reserve(length);
+
+  for (int i = 0; i < length; ++i)
   {
     randArr.push_back(getRandomInt(upperLimit));
   }
   return randArr;
 }
 
-std::vector<std::vector<int>> getRandomPairsArray(unsigned int length)
+std::vector<std::pair<int, int>> getRandomPairsArray(unsigned int length)
 {
-  std::vector<std::vector<int>> pairs = {};
-  for (unsigned int i = 0; i < length; i++)
+  std::vector<std::pair<int, int>> pairs;
+  pairs.reserve(length);
+
+  for (unsigned int i = 0; i < length; ++i)
   {
-    std::vector<int> pair = {rand() % 6, rand() % 6};
+    std::pair<int, int> pair = {rand() % 6, rand() % 6};
     pairs.push_back(pair);
   }
   return pairs;
@@ -40,7 +44,7 @@ std::vector<std::vector<int>> getRandomPairsArray(unsigned int length)
 
 std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
 {
-  std::vector<std::vector<int>> pairsArray = getRandomPairsArray(12);
+  std::vector<std::pair<int, int>> pairsArray = getRandomPairsArray(12);
   BinaryFunctionMap map;
   FunctionTree tree(pairsArray, map);
 
@@ -51,11 +55,12 @@ std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
   };
   RGBPolynomial poly(coeffArray);
 
-  std::vector<unsigned char> image = {};
+  std::vector<unsigned char> image;
+  image.reserve(height * width);
 
-  for (unsigned int i = 0; i < height; i++)
+  for (unsigned int i = 0; i < height; ++i)
   {
-    for (unsigned int j = 0; j < width; j++)
+    for (unsigned int j = 0; j < width; ++j)
     {
       std::vector<float> vec = poly.applyPoly(tree.applyTree(((float)i / width), (float)j / height));
       image.push_back(vec[0] * 255);
