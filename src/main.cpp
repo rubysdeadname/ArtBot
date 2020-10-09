@@ -36,7 +36,7 @@ std::vector<std::pair<int, int>> getRandomPairsArray(unsigned int length)
 
   for (unsigned int i = 0; i < length; ++i)
   {
-    std::pair<int, int> pair = {rand() % 5, rand() % 5};
+    std::pair<int, int> pair = {rand() % 6, rand() % 6};
     pairs.push_back(pair);
   }
   return pairs;
@@ -44,14 +44,14 @@ std::vector<std::pair<int, int>> getRandomPairsArray(unsigned int length)
 
 std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
 {
-  std::vector<std::pair<int, int>> pairsArray = getRandomPairsArray(3);
+  std::vector<std::pair<int, int>> pairsArray = getRandomPairsArray(12);
   BinaryFunctionMap map;
   FunctionTree tree(pairsArray, map);
 
   std::vector<std::vector<int>> coeffArray = {
-      getRandomIntArray((rand() % 4) + 4, 10),
-      getRandomIntArray((rand() % 4) + 4, 10),
-      getRandomIntArray((rand() % 4) + 4, 10),
+      getRandomIntArray((rand() % 3) + 3, 10),
+      getRandomIntArray((rand() % 3) + 3, 10),
+      getRandomIntArray((rand() % 3) + 3, 10),
   };
   RGBPolynomial poly(coeffArray);
 

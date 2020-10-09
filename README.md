@@ -1,5 +1,7 @@
 # ArtBot
 
+[![Build Status](https://travis-ci.com/gabrielbarker/ArtBot.svg?branch=master)](https://travis-ci.com/gabrielbarker/ArtBot)
+
 A CLI tool to generate random, pretty png's. ArtBot is capable of producing images in any resolution. Different methods of producing images can be substituted for one another.
 
 ArtBot can be built out of the box using make:
