@@ -1,23 +1,20 @@
-#include "lodepng.hpp"
+#include "ImageCreator.hpp"
 #include <iostream>
 #include <string>
-#include "FunctionTree.hpp"
-#include "RGBPolynomial.hpp"
-#include "ArgumentHandler.hpp"
 
-void encodeOneStep(const char *filename, std::vector<unsigned char> &image, unsigned width, unsigned height)
+void ImageCreator::encodeOneStep(const char *filename, std::vector<unsigned char> &image, unsigned width, unsigned height)
 {
   unsigned error = lodepng::encode(filename, image, width, height);
   if (error)
     std::cout << "encoder error " << error << ": " << lodepng_error_text(error) << std::endl;
 }
 
-int getRandomInt(int upperLimit)
+int ImageCreator::getRandomInt(int upperLimit)
 {
   return (int)(upperLimit * (float)rand() / (float)RAND_MAX);
 }
 
-std::vector<int> getRandomIntArray(int length, int upperLimit)
+std::vector<int> ImageCreator::getRandomIntArray(int length, int upperLimit)
 {
   std::vector<int> randArr;
   randArr.reserve(length);
@@ -29,7 +26,7 @@ std::vector<int> getRandomIntArray(int length, int upperLimit)
   return randArr;
 }
 
-std::vector<std::pair<int, int>> getRandomPairsArray(unsigned int length)
+std::vector<std::pair<int, int>> ImageCreator::getRandomPairsArray(unsigned int length)
 {
   std::vector<std::pair<int, int>> pairs;
   pairs.reserve(length);
@@ -42,7 +39,7 @@ std::vector<std::pair<int, int>> getRandomPairsArray(unsigned int length)
   return pairs;
 }
 
-std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
+std::vector<unsigned char> ImageCreator::getImage(unsigned int width, unsigned int height)
 {
   std::vector<std::pair<int, int>> pairsArray = getRandomPairsArray(12);
   BinaryFunctionMap map;
@@ -72,7 +69,7 @@ std::vector<unsigned char> getImage(unsigned int width, unsigned int height)
   return image;
 }
 
-int setSeed(int seed)
+int ImageCreator::setSeed(int seed)
 {
   if (seed < 0)
     seed = time(NULL);
@@ -81,20 +78,14 @@ int setSeed(int seed)
   return seed;
 }
 
-int main(int argc, char const *argv[])
+void ImageCreator::create(int randSeed, unsigned int dim, std::string name)
 {
-  ArgumentHandler handler(argc, argv);
-  int seed = setSeed(handler.getSeed());
-  int dim = handler.getWidth();
-
+  int seed = setSeed(randSeed);
   std::vector<unsigned char> image = getImage(dim, dim);
-
   std::string path = "images/";
-  std::string name = handler.getName();
   if (name == "")
     name = std::to_string(seed);
   const char *fileName = path.append(name).append(".png").c_str();
 
   encodeOneStep(fileName, image, dim, dim);
-  return 0;
 }
