@@ -8,7 +8,7 @@ TEST_LIBPATH = /usr/local/Cellar/unittest-cpp/2.0.0/lib/
 TEST_LIB = UnitTest++
 
 SRCS = $(shell find $(SRCDIR) -name '*.cpp')
-TESTS = $(shell find . -name '*.cpp' | grep -v "src/main.cpp")
+TESTS = $(shell find . -name '*.cpp' | grep -v "src/server.cpp")
 
 CXXFLAGS = -Wall -Wextra -Wpedantic -std=c++17 -I$(INCDIR)
 TEST_LIB_FLAGS = -L$(TEST_LIBPATH) -I$(TEST_INCPATH) -l$(TEST_LIB)
